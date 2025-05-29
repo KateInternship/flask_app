@@ -37,8 +37,10 @@
 ## 🔄 2. Subsequent Deployments
 
 When your images are already built and you just want to spin up containers:
+
     ```bash
     docker compose up --build -d
+   ```
    ```
 
 ## 💻 3. Configure heartbeat.sh
