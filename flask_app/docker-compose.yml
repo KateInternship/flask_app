@@ -1,0 +1,41 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: mydb
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - mynet
+
+  api:
+    build: ./backend
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql+asyncpg://postgres:postgres@db:5432/mydb
+    ports:
+      - "8000:8000"
+    networks:
+      - mynet
+
+  web:
+    image: flask_app:slim
+    depends_on:
+        - api
+    environment:
+        API_URL: http://api:8000
+    ports:
+        - "4000:4000"
+    networks:
+        - mynet
+
+volumes:
+  pgdata:
+
+networks:
+  mynet:
+    driver: bridge
