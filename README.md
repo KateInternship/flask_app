@@ -57,8 +57,9 @@ Replace the *.*.*.* with your host’s IP
     vagrant provision sftp1 sftp2 sftp3 --provision-with install_keys
     vagrant provision sftp1 sftp2 sftp3 --provision-with heartbeat_cron
    ```
+   ```
 
-## 🎉 You're all set! 🚀
+## 🎉 5. You're all set! 🚀
 
     ```bash
     http://localhost:4000
